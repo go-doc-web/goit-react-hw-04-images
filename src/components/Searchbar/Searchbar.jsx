@@ -1,68 +1,57 @@
+import { useState, useEffect } from 'react';
+
 import PropTypes from 'prop-types';
 import { CiSearch } from 'react-icons/ci';
 
-import { Component } from 'react';
+import initialState from './initialState';
 
 import css from './search-bar.module.scss';
 
-class Searchbar extends Component {
-  state = {
-    search: '',
-  };
+const Searchbar = ({ onSubmit }) => {
+  const [state, setState] = useState({ ...initialState });
 
-  handleSubmit = e => {
-    e.preventDefault();
-    const { onSubmit } = this.props;
-
-    onSubmit({ ...this.state });
-    // this.reset();
-  };
-
-  handleChange = ({ target }) => {
+  const handleChange = ({ target }) => {
     const { value, name } = target;
-
-    this.setState({
-      [name]: value,
+    console.log(value);
+    setState(prevState => {
+      return { ...prevState, [name]: value };
     });
   };
 
-  reset() {
-    this.setState({
-      search: '',
-    });
-  }
+  const handleSubmit = e => {
+    e.preventDefault();
 
-  render() {
-    const { search } = this.state;
-    const { handleChange, handleSubmit } = this;
+    onSubmit({ ...state });
+  };
 
-    return (
-      <header className={css.searchbar}>
-        <div className="container">
-          <form onSubmit={handleSubmit} className={css.form}>
-            <button type="submit" className={css.button}>
-              <span className={css.button__label}>
-                <CiSearch />
-              </span>
-            </button>
+  const { search } = state;
 
-            <input
-              onChange={handleChange}
-              className={css.input}
-              type="text"
-              autoComplete="off"
-              autoFocus
-              placeholder="Search images and photos"
-              name="search"
-              value={search}
-              required
-            />
-          </form>
-        </div>
-      </header>
-    );
-  }
-}
+  return (
+    <header className={css.searchbar}>
+      <div className="container">
+        <form onSubmit={handleSubmit} className={css.form}>
+          <button type="submit" className={css.button}>
+            <span className={css.button__label}>
+              <CiSearch />
+            </span>
+          </button>
+
+          <input
+            onChange={handleChange}
+            className={css.input}
+            type="text"
+            autoComplete="off"
+            autoFocus
+            placeholder="Search images and photos"
+            name="search"
+            value={search}
+            required
+          />
+        </form>
+      </div>
+    </header>
+  );
+};
 
 export default Searchbar;
 
