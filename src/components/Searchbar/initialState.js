@@ -1,5 +1,5 @@
 const initialState = {
-  search: '',
+  searchForm: '',
 };
 
 export default initialState;

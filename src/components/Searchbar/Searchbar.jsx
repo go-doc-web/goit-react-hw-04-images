@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import PropTypes from 'prop-types';
 import { CiSearch } from 'react-icons/ci';
@@ -24,7 +24,7 @@ const Searchbar = ({ onSubmit }) => {
     onSubmit({ ...state });
   };
 
-  const { search } = state;
+  const { searchForm } = state;
 
   return (
     <header className={css.searchbar}>
@@ -43,8 +43,8 @@ const Searchbar = ({ onSubmit }) => {
             autoComplete="off"
             autoFocus
             placeholder="Search images and photos"
-            name="search"
-            value={search}
+            name="searchForm"
+            value={searchForm}
             required
           />
         </form>
