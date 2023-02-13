@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 
-import axios from 'axios';
-
 import Loader from './Loader';
 import Searchbar from './Searchbar';
 import ImageGallery from './ImageGallery';
