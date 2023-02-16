@@ -1,28 +1,34 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 
 import PropTypes from 'prop-types';
 import { CiSearch } from 'react-icons/ci';
 
 import initialState from './initialState';
+import useForm from 'shared/hooks/useForm';
 
 import css from './search-bar.module.scss';
 
 const Searchbar = ({ onSubmit }) => {
-  const [state, setState] = useState({ ...initialState });
+  const { state, handleSubmit, handleChange } = useForm({
+    initialState,
+    onSubmit,
+  });
 
-  const handleChange = ({ target }) => {
-    const { value, name } = target;
-    console.log(value);
-    setState(prevState => {
-      return { ...prevState, [name]: value };
-    });
-  };
+  // const [state, setState] = useState({ ...initialState });
 
-  const handleSubmit = e => {
-    e.preventDefault();
+  // const handleChange = ({ target }) => {
+  //   const { value, name } = target;
+  //   console.log(value);
+  //   setState(prevState => {
+  //     return { ...prevState, [name]: value };
+  //   });
+  // };
 
-    onSubmit({ ...state });
-  };
+  // const handleSubmit = e => {
+  //   e.preventDefault();
+
+  //   onSubmit({ ...state });
+  // };
 
   const { searchForm } = state;
 
