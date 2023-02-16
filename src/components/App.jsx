@@ -19,7 +19,6 @@ const App = () => {
   const [imageLarge, setImageLarge] = useState(null);
 
   useEffect(() => {
-    // eslint-disable-next-line no-self-compare
     if (!search) {
       return;
     }
